@@ -1,0 +1,18 @@
+[
+    "District",
+    "Class",
+    "Building",
+    "BuildingType",
+    "Section",
+    "PropertyType",
+    "PropertyCategory",
+    "Apartments",
+    "Finishing",
+    "Status",
+    "ApartmentOption",
+    "Mortgage",
+    "Subsidies",
+    "Layout",
+    "Developer_encoded",
+    "Complex_encoded"
+]
