@@ -4,3 +4,5 @@ pandas
 numpy
 catboost
 pydantic
+requests 
+beautifulsoup4
