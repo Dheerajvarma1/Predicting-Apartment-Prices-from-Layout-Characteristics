@@ -70,46 +70,32 @@ Manual data entry is error-prone and time-consuming. Existing solutions lack int
 ```mermaid
 graph TB
     subgraph "Client Layer"
-        UI["React SPA
-Bilingual Interface"]
+        UI[React SPA]
     end
     
     subgraph "API Layer"
-        API["FastAPI Server
-CORS-Enabled"]
-        MANUAL["/predict Endpoint
-Manual Input"]
-        LINK["/predict-from-link Endpoint
-URL Input"]
+        API[FastAPI Server]
+        MANUAL[/predict endpoint]
+        LINK[/predict-from-link endpoint]
     end
     
     subgraph "Data Extraction Layer"
-        DRIVER["Selenium WebDriver
-Anti-Detection Config"]
-        JSON_EXT["JavaScript Execution
-JSON Extraction"]
-        HTML_EXT["BeautifulSoup
-HTML Parsing"]
-        REGEX_EXT["Regex Patterns
-Text Extraction"]
+        DRIVER[Selenium WebDriver]
+        JSON_EXT[JavaScript JSON Extraction]
+        HTML_EXT[BeautifulSoup HTML Parser]
+        REGEX_EXT[Regex Text Extraction]
     end
     
     subgraph "ML Layer"
-        MAPPER["Field Mapper
-Russian → English"]
-        PREP["Feature Preparation
-Categorical Encoding"]
-        MODEL["CatBoost Regressor
-Gradient Boosting"]
+        MAPPER[Russian to English Mapper]
+        PREP[Feature Preparation]
+        MODEL[CatBoost Regressor]
     end
     
     subgraph "Data Layer"
-        FEATURES["model_features.json
-Feature Schema"]
-        CATS["categorical_features.json
-Category Definitions"]
-        CBM["catboost_price_model_final.cbm
-Trained Model"]
+        FEATURES[model_features.json]
+        CATS[categorical_features.json]
+        CBM[catboost_price_model_final.cbm]
     end
     
     UI -->|HTTP POST| API
