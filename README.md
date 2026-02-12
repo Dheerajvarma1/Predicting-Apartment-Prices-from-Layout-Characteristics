@@ -70,32 +70,32 @@ Manual data entry is error-prone and time-consuming. Existing solutions lack int
 ```mermaid
 graph TB
     subgraph "Client Layer"
-        UI[React SPA]
+        UI["React SPA"]
     end
     
     subgraph "API Layer"
-        API[FastAPI Server]
-        MANUAL[/predict endpoint]
-        LINK[/predict-from-link endpoint]
+        API["FastAPI Server"]
+        MANUAL["POST /predict"]
+        LINK["POST /predict-from-link"]
     end
     
     subgraph "Data Extraction Layer"
-        DRIVER[Selenium WebDriver]
-        JSON_EXT[JavaScript JSON Extraction]
-        HTML_EXT[BeautifulSoup HTML Parser]
-        REGEX_EXT[Regex Text Extraction]
+        DRIVER["Selenium WebDriver"]
+        JSON_EXT["JavaScript JSON Extraction"]
+        HTML_EXT["BeautifulSoup HTML Parser"]
+        REGEX_EXT["Regex Text Extraction"]
     end
     
     subgraph "ML Layer"
-        MAPPER[Russian to English Mapper]
-        PREP[Feature Preparation]
-        MODEL[CatBoost Regressor]
+        MAPPER["Russian to English Mapper"]
+        PREP["Feature Preparation"]
+        MODEL["CatBoost Regressor"]
     end
     
     subgraph "Data Layer"
-        FEATURES[model_features.json]
-        CATS[categorical_features.json]
-        CBM[catboost_price_model_final.cbm]
+        FEATURES["model_features.json"]
+        CATS["categorical_features.json"]
+        CBM["catboost_price_model_final.cbm"]
     end
     
     UI -->|HTTP POST| API
