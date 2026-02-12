@@ -394,6 +394,10 @@ cleaned = float(match.group(1).replace(',', '.'))
 - **Learning Rate**: 0.03
 - **Loss Function**: RMSE (log-transformed target)
 
+> [!TIP]
+> **Why CatBoost?**
+> We chose CatBoost because our dataset contains many high-cardinality categorical features (District, Developer, Complex), and CatBoost handles these natively using **Ordered Target Encoding**. This eliminates the need for manual one-hot encoding, prevents target leakage, and delivers more stable performance on structured tabular data compared to LightGBM or XGBoost.
+
 **Feature Categories**:
 
 | Category | Examples | Encoding |
