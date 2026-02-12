@@ -70,32 +70,46 @@ Manual data entry is error-prone and time-consuming. Existing solutions lack int
 ```mermaid
 graph TB
     subgraph "Client Layer"
-        UI[React SPA<br/>Bilingual Interface]
+        UI["React SPA
+Bilingual Interface"]
     end
     
     subgraph "API Layer"
-        API[FastAPI Server<br/>CORS-Enabled]
-        MANUAL[/predict Endpoint<br/>Manual Input]
-        LINK[/predict-from-link Endpoint<br/>URL Input]
+        API["FastAPI Server
+CORS-Enabled"]
+        MANUAL["/predict Endpoint
+Manual Input"]
+        LINK["/predict-from-link Endpoint
+URL Input"]
     end
     
     subgraph "Data Extraction Layer"
-        DRIVER[Selenium WebDriver<br/>Anti-Detection Config]
-        JSON_EXT[JavaScript Execution<br/>JSON Extraction]
-        HTML_EXT[BeautifulSoup<br/>HTML Parsing]
-        REGEX_EXT[Regex Patterns<br/>Text Extraction]
+        DRIVER["Selenium WebDriver
+Anti-Detection Config"]
+        JSON_EXT["JavaScript Execution
+JSON Extraction"]
+        HTML_EXT["BeautifulSoup
+HTML Parsing"]
+        REGEX_EXT["Regex Patterns
+Text Extraction"]
     end
     
     subgraph "ML Layer"
-        MAPPER[Field Mapper<br/>Russian → English]
-        PREP[Feature Preparation<br/>Categorical Encoding]
-        MODEL[CatBoost Regressor<br/>Gradient Boosting]
+        MAPPER["Field Mapper
+Russian → English"]
+        PREP["Feature Preparation
+Categorical Encoding"]
+        MODEL["CatBoost Regressor
+Gradient Boosting"]
     end
     
     subgraph "Data Layer"
-        FEATURES[model_features.json<br/>Feature Schema]
-        CATS[categorical_features.json<br/>Category Definitions]
-        CBM[catboost_price_model_final.cbm<br/>Trained Model]
+        FEATURES["model_features.json
+Feature Schema"]
+        CATS["categorical_features.json
+Category Definitions"]
+        CBM["catboost_price_model_final.cbm
+Trained Model"]
     end
     
     UI -->|HTTP POST| API
@@ -565,6 +579,7 @@ const API_URL = process.env.VITE_API_URL || 'http://localhost:8000'
 
 1. **Supported Platforms**: Only Cian.ru and Samolet.ru
    - **Mitigation**: Extraction patterns are modular; new platforms require adding CSS selectors and regex patterns
+   - **Note**: Protected websites (Domclick.ru, Avito.ru) implement advanced anti-bot measures (CAPTCHA, fingerprinting, rate limiting) that require additional infrastructure (residential proxies, CAPTCHA solving services, browser fingerprint randomization) beyond the current implementation
 
 2. **Anti-Bot Measures**: Websites may implement CAPTCHA or IP blocking
    - **Mitigation**: Randomized delays, residential proxies (not implemented), CAPTCHA solving services (not implemented)
@@ -612,7 +627,10 @@ const API_URL = process.env.VITE_API_URL || 'http://localhost:8000'
 1. **Caching Layer**: Redis cache for recently extracted URLs (TTL: 24h)
 2. **Async Extraction**: FastAPI background tasks for non-blocking URL processing
 3. **Confidence Intervals**: Return prediction uncertainty based on feature completeness
-4. **Additional Platforms**: Expand to Domclick.ru, Avito.ru
+4. **Enhanced Anti-Detection**: Browser fingerprint randomization, residential proxy rotation
+
+> [!NOTE]
+> Expansion to heavily protected platforms (Domclick.ru, Avito.ru) requires significant infrastructure investment including CAPTCHA solving services, residential proxy networks, and advanced fingerprinting techniques, which are beyond the scope of this MVP.
 
 ### Medium-Term (3-6 months)
 
