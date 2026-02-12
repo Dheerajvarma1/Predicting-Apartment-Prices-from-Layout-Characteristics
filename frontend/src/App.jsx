@@ -38,6 +38,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [language, setLanguage] = useState("ru"); // Default to Russian
   const [theme, setTheme] = useState("light");
+  const [inputType, setInputType] = useState("manual"); // 'manual' or 'link'
+  const [linkUrl, setLinkUrl] = useState("");
 
   // Effect to apply theme to document
   useEffect(() => {
@@ -57,6 +59,11 @@ function App() {
       heroSubtitle: "На базе Передового Машинного Обучения | Самолет Россия",
       heroDesc: "Получите точную оценку стоимости недвижимости мгновенно с помощью нашего ИИ. Обучен на тысячах сделок по всей России.",
       heroButton: "Начать Прогноз →",
+      inputTypeManual: "Вручную",
+      inputTypeLink: "По Ссылке (Самолет)",
+      linkPlaceholder: "Вставьте ссылку на квартиру с сайта samolet.ru",
+      linkButton: "Прогноз по Ссылке",
+      orLabel: "ИЛИ",
       featuresTitle: "Почему Мы?",
       featAccuracyTitle: "Точные Прогнозы",
       featAccuracyDesc: "ML модели, обученные на обширных данных",
@@ -120,6 +127,11 @@ function App() {
       heroSubtitle: "Powered by Advanced Machine Learning | Samolet Russia",
       heroDesc: "Get accurate property valuations instantly using our AI-powered prediction engine. Trained on thousands of real estate transactions across Russia.",
       heroButton: "Start Prediction →",
+      inputTypeManual: "Manual Input",
+      inputTypeLink: "By Link (Samolet)",
+      linkPlaceholder: "Paste Samolet.ru apartment link here",
+      linkButton: "Predict from Link",
+      orLabel: "OR",
       featuresTitle: "Why Choose Our Predictor?",
       featAccuracyTitle: "Accurate Predictions",
       featAccuracyDesc: "Machine learning models trained on extensive real estate data",
@@ -212,6 +224,31 @@ function App() {
     }
   };
 
+  const handleLinkSubmit = async (e) => {
+    e.preventDefault();
+    if (!linkUrl) return;
+    setIsLoading(true);
+
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/predict-from-link",
+        { url: linkUrl }
+      );
+
+      setResult(response.data);
+      // Scroll to results
+      setTimeout(() => {
+        document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } catch (error) {
+      console.error(error);
+      const errorMessage = error.response?.data?.detail || "Error predicting from link. Please ensure it is a valid samolet.ru apartment link.";
+      alert(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="app" >
       {/* Navbar */}
@@ -299,38 +336,81 @@ function App() {
           <p className="section-description">
             {t.propDetailsDesc}
           </p>
-          <p className="section-note">
-            {t.propDetailsNote}
-          </p>
 
-          <form onSubmit={handleSubmit} className="prediction-form">
-            {Object.keys(formData).map((key) => (
-              <div key={key} className="input-group">
-                <label htmlFor={key}>{t.fields[key] || key}</label>
+          <div className="input-type-toggle">
+            <button
+              className={`toggle-btn ${inputType === 'manual' ? 'active' : ''}`}
+              onClick={() => setInputType('manual')}
+            >
+              {t.inputTypeManual}
+            </button>
+            <button
+              className={`toggle-btn ${inputType === 'link' ? 'active' : ''}`}
+              onClick={() => setInputType('link')}
+            >
+              {t.inputTypeLink}
+            </button>
+          </div>
+
+          {inputType === 'manual' ? (
+            <>
+              <p className="section-note">
+                {t.propDetailsNote}
+              </p>
+
+              <form onSubmit={handleSubmit} className="prediction-form">
+                {Object.keys(formData).map((key) => (
+                  <div key={key} className="input-group">
+                    <label htmlFor={key}>{t.fields[key] || key}</label>
+                    <input
+                      id={key}
+                      type="text"
+                      name={key}
+                      placeholder={language === 'ru' ? `Введите: ${t.fields[key] || key}` : `Enter ${t.fields[key] || key}`}
+                      value={formData[key]}
+                      onChange={handleChange}
+                    />
+                  </div>
+                ))}
+
+                <button type="submit" className="submit-button" disabled={isLoading}>
+                  {isLoading ? (
+                    <>
+                      <span className="spinner"></span>
+                      {t.analyzing}
+                    </>
+                  ) : (
+                    t.submitButton
+                  )}
+                </button>
+              </form>
+            </>
+          ) : (
+            <form onSubmit={handleLinkSubmit} className="link-form">
+              <div className="input-group full-width">
                 <input
-                  id={key}
-                  type="text"
-                  name={key}
-                  placeholder={language === 'ru' ? `Введите: ${t.fields[key] || key}` : `Enter ${t.fields[key] || key}`}
-                  value={formData[key]}
-                  onChange={handleChange}
+                  type="url"
+                  placeholder={t.linkPlaceholder}
+                  value={linkUrl}
+                  onChange={(e) => setLinkUrl(e.target.value)}
+                  className="link-input"
+                  required
                 />
               </div>
-            ))}
-
-            <button type="submit" className="submit-button" disabled={isLoading}>
-              {isLoading ? (
-                <>
-                  <span className="spinner"></span>
-                  {t.analyzing}
-                </>
-              ) : (
-                t.submitButton
-              )}
-            </button>
-          </form>
+              <button type="submit" className="submit-button" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <span className="spinner"></span>
+                    {t.analyzing}
+                  </>
+                ) : (
+                  t.linkButton
+                )}
+              </button>
+            </form>
+          )}
         </div>
-      </section >
+      </section>
 
       {/* Results Section */}
       {
