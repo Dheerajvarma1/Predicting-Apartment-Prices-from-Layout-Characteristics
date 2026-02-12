@@ -4,5 +4,6 @@ pandas
 numpy
 catboost
 pydantic
-requests 
+selenium
 beautifulsoup4
+webdriver-manager
