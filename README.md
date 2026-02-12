@@ -528,55 +528,37 @@ const API_URL = process.env.VITE_API_URL || 'http://localhost:8000'
 ### Example 1: High-Rise Apartment
 **Listing**: [Cian Listing 1](https://www.cian.ru/sale/flat/323822282/)
 
-````carousel
-![Listing Reference Page](proof's/Link-Based%20Input%201%20Ref.png)
-<!-- slide -->
-![System Processing URL](proof's/Link-Based%20Input%201.png)
-<!-- slide -->
-![Prediction Result](proof's/Link-Based%20Output%201.png)
-````
+| Reference Listing | System Processing | Prediction Result |
+| :---: | :---: | :---: |
+| ![Ref](proof's/Link-Based%20Input%201%20Ref.png) | ![Input](proof's/Link-Based%20Input%201.png) | ![Output](proof's/Link-Based%20Output%201.png) |
 
 ### Example 2: Modern Layout
 **Listing**: [Cian Listing 2](https://www.cian.ru/sale/flat/322901696/)
 
-````carousel
-![Listing Reference Page](proof's/Link-Based%20Input%202%20Ref.png)
-<!-- slide -->
-![System Processing URL](proof's/Link-Based%20Input%202.png)
-<!-- slide -->
-![Prediction Result](proof's/Link-Based%20Output%202.png)
-````
+| Reference Listing | System Processing | Prediction Result |
+| :---: | :---: | :---: |
+| ![Ref](proof's/Link-Based%20Input%202%20Ref.png) | ![Input](proof's/Link-Based%20Input%202.png) | ![Output](proof's/Link-Based%20Output%202.png) |
 
 ### Example 3: Premium Tier Property
 **Listing**: [Cian Listing 3](https://www.cian.ru/sale/flat/319285040/)
 
-````carousel
-![Listing Reference Page](proof's/Link-Based%20Input%203%20Ref.png)
-<!-- slide -->
-![System Processing URL](proof's/Link-Based%20Input%203.png)
-<!-- slide -->
-![Prediction Result](proof's/Link-Based%20Output%203.png)
-````
+| Reference Listing | System Processing | Prediction Result |
+| :---: | :---: | :---: |
+| ![Ref](proof's/Link-Based%20Input%203%20Ref.png) | ![Input](proof's/Link-Based%20Input%203.png) | ![Output](proof's/Link-Based%20Output%203.png) |
 
 ### Example 4: Standard Comfort Class
 **Listing**: [Cian Listing 4](https://www.cian.ru/sale/flat/316955374/)
 
-````carousel
-![Listing Reference Page](proof's/Link-Based%20Input%204%20Ref.png)
-<!-- slide -->
-![System Processing URL](proof's/Link-Based%20Input%204.png)
-<!-- slide -->
-![Prediction Result](proof's/Link-Based%20Output%204.png)
-````
+| Reference Listing | System Processing | Prediction Result |
+| :---: | :---: | :---: |
+| ![Ref](proof's/Link-Based%20Input%204%20Ref.png) | ![Input](proof's/Link-Based%20Input%204.png) | ![Output](proof's/Link-Based%20Output%204.png) |
 
 ### Manual Input Validation
 **System Capability**: Prediction using manually entered parameters from brochures or agents.
 
-````carousel
-![Manual Parameter Entry](proof's/Manual%20Input%201.png)
-<!-- slide -->
-![Manual Entry Result](proof's/Manual%20Output%201.png)
-````
+| Manual Parameter Entry | Manual Entry Result |
+| :---: | :---: |
+| ![Entry](proof's/Manual%20Input%201.png) | ![Result](proof's/Manual%20Output%201.png) |
 
 ---
 
