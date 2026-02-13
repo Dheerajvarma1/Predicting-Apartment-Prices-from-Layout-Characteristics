@@ -449,25 +449,39 @@ total_price = price_per_meter * total_area
 
 ## Deployment & Operations
 
+### Quick Start (Local Development)
+
+1.  **Clone & Setup**:
+    ```bash
+    git clone https://github.com/Dheerajvarma1/Predicting-Apartment-Prices-from-Layout-Characteristics.git
+    cd Predicting-Apartment-Prices-from-Layout-Characteristics
+    pip install -r requirements.txt
+    ```
+
+2.  **Run Backend**:
+    ```bash
+    cd backend
+    uvicorn main:app --reload
+    ```
+
+3.  **Run Frontend**:
+    ```bash
+    cd frontend
+    npm install
+    npm run dev
+    ```
+
 ### Backend Deployment
 
-**Requirements**:
+**Installation**:
 ```bash
-pip install -r backend/requirements.txt
+pip install -r requirements.txt
 ```
-
-**Dependencies**:
-- `fastapi` - API framework
-- `uvicorn` - ASGI server
-- `catboost` - ML model
-- `selenium` - Web automation
-- `beautifulsoup4` - HTML parsing
-- `webdriver-manager` - ChromeDriver management
 
 **Launch**:
 ```bash
 cd backend
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
 **Production Considerations**:
@@ -722,6 +736,7 @@ Training notebook: `notebook/model_training.ipynb`
 │   └── model_training.ipynb             # Training pipeline
 ├── dataset/
 │   └── samolet_flats.csv                # Training data
+├── requirements.txt                     # Global dependencies (Backend + Notebook)
 └── README.md                            # This file
 ```
 
@@ -742,9 +757,13 @@ Training notebook: `notebook/model_training.ipynb`
 
 ## Contact & Support
 
-**Author**: Dheeraj Varma
-**Portfolio**: [GitHub Profile](https://github.com/Dheerajvarma1)
+**Author**: Subburi Dheeraj Varma
+**LinkedIn**: [Dheeraj Varma](https://www.linkedin.com/in/dheeraj-varma-5061342b1/)
+**GitHub**: [Dheerajvarma1](https://github.com/Dheerajvarma1)
 **Project Repository**: [Samolet-Russia](https://github.com/Dheerajvarma1/Predicting-Apartment-Prices-from-Layout-Characteristics)
+
+**Email**: dheerajvarma031@gmail.com
+**Phone**: +91 7981692357
 
 **Issues**: Please report bugs via GitHub Issues with:
 - Error logs (backend console output)

@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pydantic
+pandas
+numpy
+catboost
+matplotlib
+seaborn
+scikit-learn
+shap
+selenium
+beautifulsoup4
+webdriver-manager
